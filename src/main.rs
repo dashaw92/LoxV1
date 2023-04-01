@@ -20,11 +20,13 @@ fn main() -> Result<()> {
     Ok(())
 }
 
+//Read a script to string, and then run it
 fn run_script(path: String) -> Result<()> {
     let script = std::fs::read_to_string(path)?;
     run(script)
 }
 
+//Accept a single line of code at a time, executing as it's read
 fn start_repl() -> Result<()> {
     let stdin = std::io::stdin();
     let mut handle = stdin.lock();
@@ -46,6 +48,7 @@ fn start_repl() -> Result<()> {
     Ok(())
 }
 
+//Run the script in string form.
 fn run(script: String) -> Result<()> {
     let scanner = Scanner::new(script);
     let tokens = scanner.scan_tokens();
